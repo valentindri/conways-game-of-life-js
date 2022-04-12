@@ -1,28 +1,37 @@
 export default class Cell{
-    constructor(worldWidth,worldHeight,xPos,yPos, cellSize,isAlive){
-        this.worldWidth = worldWidth;
-        this.worldHeight = worldHeight;
-        this.yPos = yPos;
-        this.xPos = xPos;
+    constructor(colPos,rowPos, cellSize, isAlive){
+        
+        this.colPos = colPos;
+        this.rowPos = rowPos;
+        
         this.size = cellSize;
+
         this.alive = isAlive;
+
+        
     }
 
+   
     draw(c){
         if(this.alive) 
         {
             c.beginPath();
             c.fillStyle = "green";
             
-            c.fillRect(this.xPos*this.size,this.yPos*this.size,this.size,this.size);
+            c.fillRect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
 
-            //c.rect(this.xPos,this.yPos,this.size,this.size);
+
+            
 
         }
+        else return;
        
+        //c.fillStyle = "black";
+        //c.font = "13px Arial";
+        //c.fillText(this.colPos + ":" + this.rowPos,(this.colPos*this.size) + 5,(this.rowPos * this.size) + 20);
         
 
-        //console.log("I'm cell " + this.xPos + " : " + this.yPos);
+        
     }
 
     die(){
@@ -31,5 +40,9 @@ export default class Cell{
 
     revive(){
         this.alive = true;
+    }
+
+    isAlive(){
+        return this.alive;
     }
 }
