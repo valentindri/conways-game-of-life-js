@@ -8,6 +8,8 @@ export default class Cell{
 
         this.alive = isAlive;
 
+        this.bacteria = document.getElementById("bacteria");
+
         
     }
 
@@ -17,11 +19,11 @@ export default class Cell{
         {
             c.beginPath();
             
-            
+            c.drawImage(this.bacteria,this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
             //c.fillRect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
-            c.rect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
-            c.fillStyle = "green";
-            c.fill();
+            //c.rect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
+            //c.fillStyle = "green";
+            //c.fill();
             
 
         }

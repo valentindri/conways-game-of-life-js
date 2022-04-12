@@ -5,12 +5,30 @@ export default class Game{
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
 
-        this.tissueHeight = 61;
-        this.tissueWidth = 61;
+        this.tissueHeight = 50;//Number of rows
+        this.tissueWidth = 100;//Number of cols
 
-        this.cellSize = 10;
-        this.cells = this.createCells(this.tissueWidth,this.tissueHeight);
+        this.cellSize = 20;
+        this.cells = this.createCells(this.tissueHeight,this.tissueWidth);
 
+    }
+
+    createCells(rows, cols){
+        this.row = [];
+        this.col = [];
+
+        for(let i = 0; i < rows; i++){
+            for(let j = 0; j < cols; j++){
+                this.col.push(new Cell(j,i, this.cellSize, this.willLive()));
+                
+            }
+            this.row.push(this.col);
+           
+            this.col = [];
+            
+        }
+        
+        return this.row;
     }
 
     clearCanvas(c){
@@ -119,23 +137,7 @@ export default class Game{
 
 
 
-    createCells(rows, cols){
-        this.row = [];
-        this.col = [];
-
-        for(let i = 0; i < rows; i++){
-            for(let j = 0; j < cols; j++){
-                this.col.push(new Cell(j,i, this.cellSize, this.willLive()));
-                
-            }
-            this.row.push(this.col);
-           
-            this.col = [];
-            
-        }
-        
-        return this.row;
-    }
+    
 
     willLive(){
         this.chancesOfLiving = 20;
