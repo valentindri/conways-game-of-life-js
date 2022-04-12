@@ -5,27 +5,33 @@ export default class Game{
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
 
-        this.tissueHeight = 50;
-        this.tissueWidth = 50;
+        this.tissueHeight = 61;
+        this.tissueWidth = 61;
 
-        this.cellSize = 8;
+        this.cellSize = 10;
         this.cells = this.createCells(this.tissueWidth,this.tissueHeight);
 
     }
 
+    clearCanvas(c){
+        c.clearRect(0,0,innerWidth,innerHeight);
+    }
   
     draw(c){
-        c.clearRect(0,0,this.gameWidth,this.gameHeight);
-
+        
+        this.clearCanvas(c);
+        //c.beginPath();
         for(let i = 0; i < this.tissueHeight; i++){
             for(let j = 0; j < this.tissueWidth; j++){
+                //c.beginPath();
                 this.cells[i][j].draw(c);
             }
         }
-
+        
     }
 
     update(){
+        //console.log("Hello");
         //Check neighbors and kill uncompliant cells
 
         /*
@@ -36,6 +42,7 @@ export default class Game{
             -All other live cells die in the next generation. Similarly, all other dead cells stay dead.
         
         */
+       
 
         this.revivers = [];
         this.dying = [];
@@ -45,13 +52,13 @@ export default class Game{
                 this.neighboors = this.neighborsCount(this.cells[i][j]);
 
                 if(this.cells[i][j].isAlive()){
-                    if(this.neighboors != 2 && this.neighboors != 3){
+                    if(this.neighboors !== 2 && this.neighboors !== 3){
                         this.dying.push(this.cells[i][j]);
                     }
                     else continue;
                 }
                 else{
-                    if(this.neighboors == 3){
+                    if(this.neighboors === 3){
                         this.revivers.push(this.cells[i][j]);
                     }
                     else continue;
@@ -131,7 +138,7 @@ export default class Game{
     }
 
     willLive(){
-        this.chancesOfLiving = 10;
+        this.chancesOfLiving = 20;
         this.badLuck = (Math.random()) * 100;
         return this.badLuck <= this.chancesOfLiving;
     }

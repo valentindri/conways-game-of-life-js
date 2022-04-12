@@ -16,11 +16,12 @@ export default class Cell{
         if(this.alive) 
         {
             c.beginPath();
-            c.fillStyle = "green";
             
-            c.fillRect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
-
-
+            
+            //c.fillRect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
+            c.rect(this.colPos*this.size,this.rowPos*this.size,this.size,this.size);
+            c.fillStyle = "green";
+            c.fill();
             
 
         }
@@ -36,6 +37,7 @@ export default class Cell{
 
     die(){
         this.alive = false;
+        //console.log("I died at " + this.rowPos + ":" + this.colPos);
     }
 
     revive(){
