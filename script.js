@@ -2,8 +2,8 @@ import Game from "./game.js";
 
 var canvas = document.getElementById("canvas");
 
-canvas.width = canvas.height * 
-    (canvas.clientWidth / canvas.clientHeight);
+//canvas.width = canvas.height * 
+ //   (canvas.clientWidth / canvas.clientHeight);
 
 var c = canvas.getContext("2d");
 

@@ -5,10 +5,10 @@ export default class Game{
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
 
-        this.tissueHeight = 50;//Number of rows
-        this.tissueWidth = 100;//Number of cols
-
-        this.cellSize = 20;
+        this.tissueHeight = 30;//Number of rows
+        this.tissueWidth = 60;//Number of cols
+        this.tongue = document.getElementById("tongue");
+        this.cellSize = 15;
         this.cells = this.createCells(this.tissueHeight,this.tissueWidth);
 
     }
@@ -38,6 +38,7 @@ export default class Game{
     draw(c){
         
         this.clearCanvas(c);
+        c.drawImage(this.tongue, 0,0);
         //c.beginPath();
         for(let i = 0; i < this.tissueHeight; i++){
             for(let j = 0; j < this.tissueWidth; j++){
